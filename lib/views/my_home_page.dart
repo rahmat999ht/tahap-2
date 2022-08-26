@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tahap_2/data/api_servise.dart';
-import 'package:tahap_2/widget/custom_form_input.dart';
 import '../widget/custom_card.dart';
 import 'form_input.dart';
 
@@ -14,17 +13,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String title1 = 'admin : ';
-  var apiServise;
+
+  ApiServise dataApi = ApiServise();
+
+  Future getDataAPi() async {
+    await dataApi.getData();
+  }
 
   @override
   void initState() {
-    apiServise = ApiServise().getData();
     super.initState();
+    dataApi.getData();
   }
 
   @override
   Widget build(BuildContext context) {
-    ApiServise().getData().then((value) => print("value: $value"));
+    // ApiServise().getData().then((value) => print("value: $value"));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 65, 148, 215),
@@ -79,19 +83,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            const CustomCard(
-              avatar:
-                  'https://assets.jalantikus.com/assets/cache/550/550/userfiles/2021/04/29/3-Bergaya-ala-modis-b70b9.jpg.webp',
-              name: 'yayat',
-              stb: '1978372',
-              major: 'tehnik informatika',
-            ),
-            const CustomCard(
-              avatar:
-                  'https://assets.jalantikus.com/assets/cache/550/550/userfiles/2021/04/29/3-Bergaya-ala-modis-b70b9.jpg.webp',
-              name: 'reza',
-              stb: '1978372',
-              major: 'tehnik informatika',
+            Expanded(
+              child: ListView.builder(
+                itemCount: dataApi.listMhs.length,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  var data = dataApi.listMhs[index];
+                  // log(data.toString());
+                  return CustomCard(
+                    name: data.nameMhs,
+                    stb: data.stbMhs,
+                    major: data.majorMhs,
+                    modelMhs: data,
+                  );
+                },
+              ),
             ),
           ],
         ),

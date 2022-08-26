@@ -56,10 +56,11 @@ class _MyHomePage2State extends State<MyHomePage2> {
                       //   // subtitle: Text(modelMhs.nameMhs),
                       // );
                       return CustomCard(
-                        avatar: snapsot.data[index]['avatar'],
+                        // avatar: snapsot.data[index]['avatar'],
                         name: snapsot.data[index]['first_name'],
                         stb: snapsot.data[index]['last_name'],
                         major: snapsot.data[index]['email'],
+                        modelMhs: snapsot.data,
                       );
                     }),
               );

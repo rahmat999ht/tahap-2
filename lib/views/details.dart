@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tahap_2/data/model_mhs.dart';
 import 'package:tahap_2/widget/custom_button.dart';
 
 class Details extends StatelessWidget {
-  const Details({Key? key}) : super(key: key);
+  final ModelMhs modelMhs;
+  const Details({
+    Key? key,
+    required this.modelMhs,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,27 +33,27 @@ class Details extends StatelessWidget {
                 dataDetails(
                   'Name',
                   120,
-                  'Yayat',
+                  modelMhs.nameMhs,
                 ),
                 dataDetails(
                   'STB',
                   131,
-                  '192555',
+                  modelMhs.stbMhs,
                 ),
                 dataDetails(
                   'Major',
                   122,
-                  'Tehnik Informatika',
+                  modelMhs.majorMhs,
                 ),
                 dataDetails(
                   'Gender',
                   113,
-                  'Laki-laki',
+                  modelMhs.gender,
                 ),
                 dataDetails(
                   'Address',
                   106,
-                  'BTP',
+                  modelMhs.address,
                 ),
               ],
             ),
