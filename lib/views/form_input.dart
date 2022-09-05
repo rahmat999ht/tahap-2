@@ -116,9 +116,14 @@ class _FormInputState extends State<FormInput> {
                     gender: valueGender.toString(),
                     address: addressC.text.toString(),
                   );
-                  widget.updateData == null
-                      ? api.createData(modelMhs)
-                      : api.updateData(modelMhs);
+                  // widget.updateData == null
+                  //     ? api.createData(modelMhs)
+                  //     : api.updateData(modelMhs);
+                  if (widget.updateData == null) {
+                    api.createData(modelMhs);
+                  } else {
+                    api.updateData(modelMhs);
+                  }
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
