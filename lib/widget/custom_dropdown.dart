@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tahap_2/theme/colors.dart';
 
 class CustomDropDown extends StatelessWidget {
   final String label;
@@ -21,7 +22,7 @@ class CustomDropDown extends StatelessWidget {
         decoration: InputDecoration(
           labelText: 'Major',
           labelStyle: const TextStyle(
-            color: Colors.brown,
+            color: ColorSCustom.brownC,
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.brown.shade200),

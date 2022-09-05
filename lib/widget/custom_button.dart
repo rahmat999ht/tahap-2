@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tahap_2/theme/colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String txButton;
@@ -20,7 +21,7 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(
-            Colors.brown,
+            ColorSCustom.brownC,
           ),
         ),
         onPressed: onPressed,
@@ -29,9 +30,11 @@ class CustomButton extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: const Color.fromARGB(255, 197, 187, 154),
+              color: ColorSCustom.brownBlurC,
             ),
-            const SizedBox(width: 5,),
+            const SizedBox(
+              width: 5,
+            ),
             Text(
               txButton,
               style: const TextStyle(color: Color.fromARGB(255, 197, 187, 154)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tahap_2/data/api_servise.dart';
+import 'package:tahap_2/theme/colors.dart';
 import '../widget/custom_card.dart';
 import 'form_input.dart';
 
@@ -31,7 +32,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // ApiServise().getData().then((value) => print("value: $value"));
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 65, 148, 215),
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$title1 ${widget.title}',
-              style: const TextStyle(color: Colors.green, fontSize: 15),
+              style: const TextStyle(color: ColorSCustom.brownC, fontSize: 15),
             ),
           ],
         ),
@@ -50,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
             padding: EdgeInsets.only(right: 12),
             child: Icon(
               Icons.person,
-              color: Colors.green,
+              color: ColorSCustom.brownC,
               size: 35,
             ),
           ),
@@ -76,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text(
                     'See all',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: ColorSCustom.brownC,
                       fontSize: 20,
                     ),
                   ),
@@ -104,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
+        backgroundColor: ColorSCustom.brownC,
         onPressed: () {
           Navigator.push(
             context,

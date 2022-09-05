@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:tahap_2/data/api_servise.dart';
 import 'package:tahap_2/data/model_mhs.dart';
+import 'package:tahap_2/theme/colors.dart';
+import 'package:tahap_2/views/form_input.dart';
+import 'package:tahap_2/views/my_home_page.dart';
 import 'package:tahap_2/widget/custom_button.dart';
 
+import '../alerts/alert_delete.dart';
+
 class Details extends StatelessWidget {
-  final ModelMhs modelMhs;
+  final ModelMhs ditailsData;
   const Details({
     Key? key,
-    required this.modelMhs,
+    required this.ditailsData,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           'Details',
-          style: TextStyle(
-            color: Colors.brown,
-          ),
+          style: TextStyle(color: ColorSCustom.brownC),
         ),
       ),
       body: Container(
+        color: Colors.white,
         padding: const EdgeInsets.all(20),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -33,43 +40,73 @@ class Details extends StatelessWidget {
                 dataDetails(
                   'Name',
                   120,
-                  modelMhs.nameMhs,
+                  ditailsData.nameMhs,
                 ),
                 dataDetails(
                   'STB',
                   131,
-                  modelMhs.stbMhs,
+                  ditailsData.stbMhs,
                 ),
                 dataDetails(
                   'Major',
                   122,
-                  modelMhs.majorMhs,
+                  ditailsData.majorMhs,
                 ),
                 dataDetails(
                   'Gender',
                   113,
-                  modelMhs.gender,
+                  ditailsData.gender,
                 ),
                 dataDetails(
                   'Address',
                   106,
-                  modelMhs.address,
+                  ditailsData.address,
                 ),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
                 CustomButton(
                   icon: Icons.delete_forever,
                   txButton: 'Delete',
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDelete(
+                          onPressedNo: () {
+                            Navigator.pop(context);
+                          },
+                          onPressedYes: () {
+                            ApiServise api = ApiServise();
+                            api.deleteData(ditailsData.idMhs);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) =>
+                                    const MyHomePage(title: 'Yayat')),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
                 ),
                 CustomButton(
                   icon: Icons.update_rounded,
                   txButton: 'Update',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) =>
+                            FormInput(updateData: ditailsData)),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -78,42 +115,42 @@ class Details extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget dataDetails(
-  String data,
-  double space,
-  String details,
-) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      children: [
-        Text(
-          data,
-          style: const TextStyle(
-            color: Colors.brown,
+  Widget dataDetails(
+    String data,
+    double space,
+    String details,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          Text(
+            data,
+            style: const TextStyle(
+              color: ColorSCustom.brownC,
+            ),
           ),
-        ),
-        SizedBox(
-          width: space,
-        ),
-        const Text(
-          ':',
-          style: TextStyle(
-            color: Colors.brown,
+          SizedBox(
+            width: space,
           ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Text(
-          details,
-          style: const TextStyle(
-            color: Colors.brown,
+          const Text(
+            ':',
+            style: TextStyle(
+              color: ColorSCustom.brownC,
+            ),
           ),
-        ),
-      ],
-    ),
-  );
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            details,
+            style: const TextStyle(
+              color: ColorSCustom.brownC,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

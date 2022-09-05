@@ -8,18 +8,12 @@ String modelMhsToJson(List<ModelMhs> data) =>
 
 class ModelMhs {
   const ModelMhs({
-    this.idMhs = 0,
+    required this.idMhs,
     required this.nameMhs,
     required this.stbMhs,
     required this.majorMhs,
     required this.gender,
     required this.address,
-    // required this.idMhs,
-    // required this.nameMhs,
-    // required this.stbMhs,
-    // required this.majorMhs,
-    // required this.gender,
-    // required this.address,
   });
 
   final int idMhs;

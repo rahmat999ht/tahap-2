@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tahap_2/data/model_mhs.dart';
+import 'package:tahap_2/theme/colors.dart';
 import '../views/details.dart';
 
 class CustomCard extends StatelessWidget {
@@ -21,32 +22,33 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blue,
+      color: ColorSCustom.brownBlurC,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
+        side: BorderSide(
+          color: ColorSCustom.brownC,
+          width: 1,
+        ),
+      ),
       elevation: 10,
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-      child: Container(
-        color: Colors.brown,
-        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
-        width: MediaQuery.of(context).size.width,
-        // height: 200,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: InkWell(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => Details(
-                  modelMhs: modelMhs,
+                  ditailsData: modelMhs,
                 ),
               ),
             );
           },
           child: Row(
             children: [
-              // CircleAvatar(
-              //   radius: 30,
-              //   backgroundImage: NetworkImage(avatar!),
-              // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -57,12 +59,18 @@ class CustomCard extends StatelessWidget {
                       color: Colors.black,
                     ),
                   ),
+                  const SizedBox(
+                    height: 7,
+                  ),
                   Text(
                     stb,
                     style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 3,
                   ),
                   Text(
                     major,
